@@ -1,0 +1,75 @@
+#!/bin/bash
+
+#SBATCH --nodes=1 # request one node
+#SBATCH --cpus-per-task=150  
+#SBATCH --mem=1500G # Maximum amount of memory this job will be given, try to estimate this to the best of your ability. This asks for 128 GB of ram.
+#SBATCH --partition=bigram
+#SBATCH --time=100:00:00
+#SBATCH --job-name="FGMP" 
+#SBATCH --mail-user=sagnik@iastate.edu
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/assembly_FGMP.output
+#SBATCH --error=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/assembly_FGMP.error 
+
+conda activate FGMP
+
+# change to the directory where FGMP was downloaded. Could be a different folder for you.
+FGMP_dir=/work/LAS/rpwise-lab/sagnik/softwares/FGMP/
+cd $FGMP_dir
+
+########################################################################################
+# Abyss
+########################################################################################
+for k in `seq 50 10 100`; do
+	# Copy the fasta file on which FGMP will be performed
+	cp /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/abyss_assembly/k$k/Sample_2-scaffolds.fa .
+	# Run the FGMP pipeline 
+	src/fgmp.pl -T 100 --tag OMA -g Sample_2-scaffolds.fa
+	# Copy the results file to the scaffold directories
+	cp *_report /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/abyss_assembly/k$k/
+	# Remove all intermediate files
+	rm Sample_2-scaffolds.fa*
+done
+
+########################################################################################
+# Masurca
+########################################################################################
+
+# Copy the fasta file on which FGMP will be performed
+cp /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly/SOAP_assembly/asm2.scafSeq2 .
+# Run the FGMP pipeline 
+src/fgmp.pl -T 100 --tag OMA -g asm2.scafSeq2
+# Copy the results file to the scaffold directories
+cp *_report /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly/SOAP_assembly
+# Remove all intermediate files
+rm asm2.scafSeq2*
+
+########################################################################################
+# SoapDenovo2
+########################################################################################
+for k in `seq 15 10 127`; do
+	# Copy the fasta file on which FGMP will be performed
+	cp /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly/k$k/soapdenovo_Sample_2.scafSeq .
+	# Run the FGMP pipeline 
+	src/fgmp.pl -T 100 --tag OMA -g soapdenovo_Sample_2.scafSeq
+	# Copy the results file to the scaffold directories
+	cp *_report /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly/k$k/
+	# Remove all intermediate files
+	rm soapdenovo_Sample_2.scafSeq*
+done
+
+########################################################################################
+# Spades
+########################################################################################
+for k in `seq 15 10 127`; do
+	# Copy the fasta file on which FGMP will be performed
+	cp /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/spades_assembly/K$k/final_contigs.fasta .
+	# Run the FGMP pipeline 
+	src/fgmp.pl -T 100 --tag OMA -g final_contigs.fasta
+	# Copy the results file to the scaffold directories
+	cp *_report /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/spades_assembly/K$k/
+	# Remove all intermediate files
+	rm final_contigs.fasta*
+done

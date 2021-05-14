@@ -1,0 +1,18 @@
+DATA
+PE = h1 466 70 /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/65_S65_paired_trim_R1.fastq  /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/65_S65_paired_trim_R2.fastq
+PE = h2 554 83 /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/68_S68_paired_trim_R1.fastq  /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/68_S68_paired_trim_R2.fastq
+PE = m1 566 85 /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/2_S2_L001_cov_paired_trim_R1_001.fastq /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/2_S2_L001_cov_paired_trim_R2_001.fastq
+PE = m2 2551 383 /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/2_S2_L001_enz_paired_trim_R1_001.fastq /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/2_S2_L001_enz_paired_trim_R2_001.fastq
+END
+
+PARAMETERS
+GRAPH_KMER_SIZE = auto
+USE_LINKING_MATES = 0
+CA_PARAMETERS =  cgwErrorRate=0.15
+KMER_COUNT_THRESHOLD = 1
+NUM_THREADS = 150
+JF_SIZE = 200000000
+SOAP_ASSEMBLY=1
+#whether to attempt to close gaps in scaffolds with Illumina data
+CLOSE_GAPS=1
+END

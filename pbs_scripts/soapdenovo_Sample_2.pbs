@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#SBATCH --nodes=1 # request one node
+#SBATCH --cpus-per-task=150  # ask for 16 cpus
+#SBATCH --mem=1000G # Maximum amount of memory this job will be given, try to estimate this to the best of your ability. This asks for 128 GB of ram.
+#SBATCH --partition=biocrunch
+#SBATCH --time=100:00:00
+#SBATCH --job-name="3FG_2" 
+#SBATCH --mail-user=sagnik@iastate.edu
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly/soapdenovo_assemble_Sample_2.output
+#SBATCH --error=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly/soapdenovo_assemble_Sample_2.error 
+
+conda activate masurca
+module load soapdenovo2
+mkdir -p /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly
+cd /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly
+
+for k in `seq 15 10 127`; do
+	mkdir k$k
+	nohup SOAPdenovo-127mer all -s  /work/LAS/rpwise-lab/sagnik/3FG/pbs_scripts/soapdenovo_config_Sample_2.txt -K $k -p 150 -o /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly/k$k/soapdenovo_Sample_2 -R -F > k$k.output 2> k$k.error &
+done 

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#SBATCH --nodes=1 # request one node
+#SBATCH --cpus-per-task=30  
+#SBATCH --mem=300G # Maximum amount of memory this job will be given, try to estimate this to the best of your ability. This asks for 128 GB of ram.
+#SBATCH --partition=speedy
+#SBATCH --time=300:00:00
+#SBATCH --job-name="braker2_3FG_2" 
+#SBATCH --mail-user=sagnik@iastate.edu
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly/k115/braker2.output
+#SBATCH --error=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly/k115/braker2.error
+
+module purge
+conda activate BRAKER2
+
+braker.pl --genome=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly/k115/soapdenovo_Sample_2.scafSeq --prot_seq=/work/LAS/rpwise-lab/sagnik/3FG/data/uniprot.fasta --ALIGNMENT_TOOL_PATH=/work/LAS/rpwise-lab/sagnik/softwares/anaconda3/envs/BRAKER2/bin -prg=gth --trainFromGth --species=Cercospora_sojina --softmasking --gff3 --cores 30 --fungus --overwrite --workingdir=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly/k115/braker2 > /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly/k115/braker2.output 2> /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/soapdenovo_assembly/k115/braker2.error 

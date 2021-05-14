@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --nodes=1 # request one node
+#SBATCH --cpus-per-task=150  
+#SBATCH --mem=1500G # Maximum amount of memory this job will be given, try to estimate this to the best of your ability. This asks for 128 GB of ram.
+#SBATCH --partition=bigram
+#SBATCH --time=100:00:00
+#SBATCH --job-name="3FG_2" 
+#SBATCH --mail-user=sagnik@iastate.edu
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly/masurca_assemble_Sample_2.output
+#SBATCH --error=/work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly/masurca_assemble_Sample_2.error 
+
+conda activate masurca
+
+mkdir -p /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly
+cd /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly
+
+masurca -o /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly/masurca_assemble_Sample_2.sh /work/LAS/rpwise-lab/sagnik/3FG/pbs_scripts/masurca_config_Sample_2.txt
+masurca  /work/LAS/rpwise-lab/sagnik/3FG/data/Sample_2/masurca_assembly/masurca_assemble_Sample_2.sh
