@@ -1,3 +1,5 @@
+
+
 1. Install conda from https://www.anaconda.com/distribution/
 2. You will need two different environments - one called masurca which will have everything you need to do the assembling and scaffolding, the other is called FGMP for running FGMP. Two environments yml files are included in this folder one for masurca and the other for FGMP
 3. Download from github git clone https://github.com/stajichlab/FGMP.git
@@ -94,8 +96,6 @@ https://mbio.asm.org/content/10/5/e01692-19 --> nice discussion of several biolo
 
 # TO DO
 
-1. Rewrite scripts to make the job plug and play - simpler to run
-2. Download experimentally verified proteins from Uniprot (Type in database:(type:ensemblfungi) AND reviewed:yes in the search box) September 2020. Total of 28270 sequences were obtained.
-3. Set up one single conda environment for doing all analysis
+1. Download the RNA-Seq and DNA-Seq data from google drive
 4. 
 
