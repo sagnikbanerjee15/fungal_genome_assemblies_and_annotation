@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+##############################################################################################################################
+# Command - prepare_masurca_configuration_file --error_directory <Full path to error directory>
+# Program will navigate to each directory, create docker packages and push it to the docker hub
+##############################################################################################################################
+from argparse import RawTextHelpFormatter
+
+import os
+import glob
+import argparse
+import sys
+
+def parseCommandLineArguments():
+
+    parser = argparse.ArgumentParser( prog = "prepare_masurca_configuration_file", description = """Prepares the configuration file for masurca""", formatter_class = RawTextHelpFormatter )
+
+    parser.add_argument( "--directory_with_input_reads", "-d", help = "Enter the directory name that contains all the raw input reads", required = True )
+    parser.add_argument( "--input_configuration_file", "-icf", help = "Enter the raw configuration file generated from Masurca", required = True )
+    parser.add_argument( "--output_configuration_file", "-ocf", help = "Enter the name of the output configuration file to be supplied to Masurca", required = True )
+    parser.add_argument( "--cpu", "-n", help = "Enter the number of threads", default = 1)
+    return parser.parse_args()
+
+
+def main():
+    """
+    """
+    options = parseCommandLineArguments()
+    
+    # Assumes that the samples are paired ended
+    all_samples = sorted(glob.glob(f"{options.directory_with_input_reads}/*"))
+    
+    fhr = open(options.input_configuration_file, "r")
+    fhw = open(options.output_configuration_file,"w")
+    for line in fhr:
+        if line[0] == "#":
+            fhw.write(line)
+        elif "PE" in line:
+            i=0
+            while i<len(all_samples):
+                fhw.write(f"PE= p1 500 50 {all_samples[i]} {all_samples[i+1]}")
+                i+=2
+        else:
+            fhw.write(line)
+    fhw.close()
+    fhr.close()
+    
+
+if __name__ == "__main__":
+    main()
