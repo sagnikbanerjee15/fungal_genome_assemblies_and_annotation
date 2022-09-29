@@ -41,6 +41,10 @@ def main():
                 fhw.write(f"PE= p{i} 500 50 /tmp/{all_samples[i].split('/')[-1]} /tmp/{all_samples[i+1].split('/')[-1]}")
                 fhw.write("\n")
                 i+=2
+        elif "SOAP_ASSEMBLY" in line:
+            fhw.write(f"SOAP_ASSEMBLY=1\n")
+        elif "NUM_THREADS" in line:
+            fhw.write(f"NUM_THREADS = {options.cpu}\n")
         else:
             fhw.write(line)
     fhw.close()
