@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+##############################################################################################################################
+# Command - prepare_masurca_configuration_file --error_directory <Full path to error directory>
+# Program will navigate to each directory, create docker packages and push it to the docker hub
+##############################################################################################################################
+from argparse import RawTextHelpFormatter
+
+import os
+import glob
+import argparse
+import sys
+
+def parseCommandLineArguments():
+
+    parser = argparse.ArgumentParser( prog = "prepare_soapdenovo2_configuration_file", description = """Prepares the configuration file for soapdenovo2""", formatter_class = RawTextHelpFormatter )
+
+    parser.add_argument( "--directory_with_input_reads", "-d", help = "Enter the directory name that contains all the raw input reads", required = True )
+    parser.add_argument( "--output_configuration_file", "-ocf", help = "Enter the name of the output configuration file to be supplied to Soapdenovo2", required = True )
+    parser.add_argument( "--cpu", "-n", help = "Enter the number of threads", default = 1)
+    return parser.parse_args()
+
+
+def main():
+    """
+    """
+    options = parseCommandLineArguments()
+    
+    # Assumes that the samples are paired ended
+    all_samples = sorted(glob.glob(f"{options.directory_with_input_reads}/*"))
+    
+    fhw = open(options.output_configuration_file,"w")
+    
+    fhw.write("max_rd_len=300")
+    fhw.write("\n")
+    fhw.write("[LIB]")
+    fhw.write("\n")
+    fhw.write("avg_ins=200")
+    fhw.write("\n")
+    fhw.write("reverse_seq=0")
+    fhw.write("\n")
+    fhw.write("asm_flags=3")
+    fhw.write("\n")
+    fhw.write("rd_len_cutoff=300")
+    fhw.write("\n")
+    fhw.write("rank=1")
+    fhw.write("\n")
+    fhw.write("pair_num_cutoff=3")
+    fhw.write("\n")
+    fhw.write("map_len=32")
+    fhw.write("\n")
+    i=0
+    while i<len(all_samples):
+        fhw.write(f"q1=/tmp/{all_samples[i].split('/')[-1]}")
+        fhw.write("\n")
+        fhw.write(f"q2=/tmp/{all_samples[i+1].split('/')[-1]}")
+        fhw.write("\n")
+        i+=2
+        
+    fhw.close()
+    
+
+if __name__ == "__main__":
+    main()
