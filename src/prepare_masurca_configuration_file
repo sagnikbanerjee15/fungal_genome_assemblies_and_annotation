@@ -38,7 +38,7 @@ def main():
         elif "PE" in line:
             i=0
             while i<len(all_samples):
-                fhw.write(f"PE= p1 500 50 {all_samples[i]} {all_samples[i+1]}")
+                fhw.write(f"PE= p1 500 50 /data/{all_samples[i]} /data/{all_samples[i+1]}")
                 i+=2
         else:
             fhw.write(line)
