@@ -29,7 +29,7 @@ def main():
     # Assumes that the samples are paired ended
     all_samples = sorted(glob.glob(f"{options.directory_with_input_reads}/*"))
     
-    fhw = open(options.output_configuration_file,"w")
+    fhw = open(options.command_line_portion,"w")
     lib = "lib='"
     command = ""
     i=0
