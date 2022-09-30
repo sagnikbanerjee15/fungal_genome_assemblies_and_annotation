@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+##############################################################################################################################
+# Command - prepare_masurca_configuration_file --error_directory <Full path to error directory>
+# Program will navigate to each directory, create docker packages and push it to the docker hub
+##############################################################################################################################
+from argparse import RawTextHelpFormatter
+
+import os
+import glob
+import argparse
+import sys
+
+def parseCommandLineArguments():
+
+    parser = argparse.ArgumentParser( prog = "prepare_abyss_configuration_file", description = """Prepares the configuration file for AbySS. Please note that this works only for paired ended data""", formatter_class = RawTextHelpFormatter )
+
+    parser.add_argument( "--directory_with_input_reads", "-d", help = "Enter the directory name that contains all the raw input reads", required = True )
+    parser.add_argument( "--command_line_portion", "-clp", help = "Enter the name of the output file that will have the command line portion to be provided as input to AbySS", required = True )
+    
+    return parser.parse_args()
+
+
+def main():
+    """
+    """
+    options = parseCommandLineArguments()
+    
+    # Assumes that the samples are paired ended
+    all_samples = sorted(glob.glob(f"{options.directory_with_input_reads}/*"))
+    
+    fhw = open(options.output_configuration_file,"w")
+    lib = "lib='"
+    command = ""
+    i=0
+    while i<len(all_samples):
+        lib += f"pe{i} "
+        sample_def = f"pe{i} /tmp/{all_samples[i].split('/')[-1]} /tmp/{all_samples[i+1].split('/')[-1]}"
+        command += sample_def + " "
+        i+=2
+    lib+="'"
+    
+    command += lib
+    fhw.write(command)
+        
+    fhw.close()
+    
+
+if __name__ == "__main__":
+    main()
