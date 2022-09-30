@@ -34,8 +34,10 @@ def main():
     command = ""
     i=0
     while i<len(all_samples):
-        lib += f"pe{i} "
-        sample_def = f"pe{i} /tmp/{all_samples[i].split('/')[-1]} /tmp/{all_samples[i+1].split('/')[-1]}"
+        lib += f"pe{i}"
+        if i+2 < len(all_samples):
+            lib+=" "
+        sample_def = f"pe{i}='/tmp/{all_samples[i].split('/')[-1]} /tmp/{all_samples[i+1].split('/')[-1]}'"
         command += sample_def + " "
         i+=2
     lib+="'"
