@@ -42,7 +42,7 @@ def main():
         i+=2
     lib+="'"
     
-    command += lib
+    command = lib +" "+command
     fhw.write(command)
         
     fhw.close()
