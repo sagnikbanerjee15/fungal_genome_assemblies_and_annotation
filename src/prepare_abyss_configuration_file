@@ -33,7 +33,7 @@ def main():
     lib = "lib='"
     command = ""
     i=0
-    while i<len(all_samples):
+    while i<len(all_samples[::-1]):
         lib += f"pe{i}"
         if i+2 < len(all_samples):
             lib+=" "
