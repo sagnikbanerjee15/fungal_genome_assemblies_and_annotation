@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+##############################################################################################################################
+#
+#
+##############################################################################################################################
+from argparse import RawTextHelpFormatter
+
+import os
+import glob
+import argparse
+import sys
+
+def parseCommandLineArguments():
+
+    parser = argparse.ArgumentParser( prog = "execute_FGMP_and_compile_single_output_file", description = """Run FGMP on each file and compile a single output file""", formatter_class = RawTextHelpFormatter )
+
+    parser.add_argument( "--masurca_with_rascaf", help = "Enter the output for masurca with rascaf", required = True )
+    parser.add_argument( "--masurca_with_prna_scaffolder", help = "Enter the output for masurca with prna scaffolder", required = True )
+    
+    parser.add_argument( "--megahit_with_rascaf", help = "Enter the output for masurca with rascaf", required = True )
+    parser.add_argument( "--megahit_with_prna_scaffolder", help = "Enter the output for megahit with prna scaffolder", required = True )
+    
+    parser.add_argument( "--soapdenovo2_with_rascaf", help = "Enter the output for soapdenovo2 with rascaf", required = True )
+    parser.add_argument( "--soapdenovo2_with_prna_scaffolder", help = "Enter the output for soapdenovo2 with prna scaffolder", required = True )
+    
+    parser.add_argument( "--abyss_with_rascaf", help = "Enter the output for abyss with rascaf", nargs = "+", required = True )
+    parser.add_argument( "--abyss_with_prna_scaffolder", help = "Enter the output for abyss with prna scaffolder", nargs = "+", required = True )
+    
+    parser.add_argument( "--output_filename", help = "Enter the name of the outputfile in csv", required = True )
+    
+    parser.add_argument( "--threads", type = int, default = 1)
+    return parser.parse_args()
+
+def executeFGMP(genome_fasta, outputfilename, threads):
+    
+    cmd  = f" fgmp.pl "
+    cmd += f" -g {genome_fasta}"
+    cmd += f" -T {threads}"
+    cmd += f" > {outputfilename}"
+    os.system(cmd)
+
+def main():
+    """
+    """
+    options = parseCommandLineArguments()
+    
+    executeFGMP(options.masurca_with_rascaf, "masurca_with_rascaf.output", options.threads)
+    executeFGMP(options.masurca_with_prna_scaffolder, "masurca_with_prna_scaffolder.output", options.threads)
+    
+    executeFGMP(options.megahit_with_rascaf, "megahit_with_rascaf.output", options.threads)
+    executeFGMP(options.megahit_with_prna_scaffolder, "megahit_with_prna_scaffolder.output", options.threads)
+    
+    executeFGMP(options.soapdenovo2_with_rascaf, "soapdenovo2_with_rascaf.output", options.threads)
+    executeFGMP(options.soapdenovo2_with_prna_scaffolder, "soapdenovo2_with_prna_scaffolder.output", options.threads)
+        
+    for abyss_file in options.abyss_with_rascaf:
+        executeFGMP(abyss_file, f"{abyss_file}.output", options.threads)
+    for abyss_file in options.abyss_with_prna_scaffolder:
+        executeFGMP(abyss_file, f"{abyss_file}.output", options.threads)
+    
+
+if __name__ == "__main__":
+    main()
