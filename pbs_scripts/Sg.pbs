@@ -5,7 +5,7 @@
 #SBATCH --partition=long
 ##SBATCH --partition=priority-mem768
 #SBATCH --qos=maizegdb
-#SBATCH --mem=400G
+#SBATCH --mem=200G
 #SBATCH --time=21-00:00:00
 #SBATCH --job-name="Sg"
 #SBATCH --mail-user=sagnikbanerjee@gmail.com
@@ -25,5 +25,6 @@ cwltool \
 /project/maizegdb/sagnik/dockerized_tools_and_pipelines/fungal_genome_assembly_and_annotation/0.0.1/validate_scaffold_fgmp.cwl \
 --cpu 72 \
 --directory_with_input_reads_DNA /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/Sg \
+--directory_with_input_reads_RNA /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/Sg \
 1> /project/maizegdb/sagnik/3_fungal_genomes/Sg/validate_scaffold_fgmp_output_directory.output \
 2> /project/maizegdb/sagnik/3_fungal_genomes/Sg/validate_scaffold_fgmp_output_directory.error
