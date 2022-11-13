@@ -1,0 +1,1604 @@
+class: Workflow
+cwlVersion: v1.0
+id: assemble_and_scaffold
+label: assemble_and_scaffold
+$namespaces:
+  sbg: 'https://www.sevenbridges.com/'
+inputs:
+  - id: directory_with_input_reads
+    type: Directory
+    'sbg:x': -333.00372314453125
+    'sbg:y': 5036.32275390625
+  - id: cpu
+    type: int?
+    'sbg:x': -338.5538024902344
+    'sbg:y': 5440.2509765625
+outputs:
+  - id: soap_denovo2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder/prna_scaffolder_output
+    type: Directory
+    label: soap_denovo2_prna_scaffolder_output
+    'sbg:x': 1485.497802734375
+    'sbg:y': 1618.828125
+  - id: megahit_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_1/prna_scaffolder_output
+    type: Directory
+    label: megahit_prna_scaffolder_output
+    'sbg:x': 1485.497802734375
+    'sbg:y': 1832.484375
+  - id: masurca_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_2/prna_scaffolder_output
+    type: Directory
+    label: masurca_prna_scaffolder_output
+    'sbg:x': 1485.497802734375
+    'sbg:y': 2046.140625
+  - id: abyss_k_95_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_3/prna_scaffolder_output
+    type: Directory
+    label: abyss_k_95_kc_4_prna_scaffolder_output
+    'sbg:x': 1485.497802734375
+    'sbg:y': 2259.796875
+  - id: abyss_k_95_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_4/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 2473.453125
+  - id: abyss_k_95_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_5/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 2687.109375
+  - id: abyss_k_90_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_6/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 2900.765625
+  - id: abyss_k_90_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_7/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3114.421875
+  - id: abyss_k_90_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_8/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3328.078125
+  - id: abyss_k_140_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_9/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3541.734375
+  - id: abyss_k_140_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_10/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3755.390625
+  - id: abyss_k_140_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_11/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3969.046875
+  - id: abyss_k_135_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_12/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 4182.703125
+  - id: abyss_k_135_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_13/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 4396.359375
+  - id: abyss_k_135_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_14/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 4610.015625
+  - id: abyss_k_130_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_15/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 4823.671875
+  - id: abyss_k_130_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_16/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5037.328125
+  - id: abyss_k_130_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_17/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5250.984375
+  - id: abyss_k_125_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_18/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5464.640625
+  - id: abyss_k_125_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_19/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5678.296875
+  - id: abyss_k_125_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_20/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5891.953125
+  - id: abyss_k_120_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_21/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 6105.609375
+  - id: abyss_k_120_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_22/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 6319.265625
+  - id: abyss_k_120_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_23/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 6532.921875
+  - id: abyss_k_115_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_24/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 6746.578125
+  - id: abyss_k_115_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_25/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 6960.234375
+  - id: abyss_k_115_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_26/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 7173.890625
+  - id: abyss_k_110_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_27/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 7387.546875
+  - id: abyss_k_110_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_28/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 7601.203125
+  - id: abyss_k_110_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_29/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 7814.859375
+  - id: abyss_k_105_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_30/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8028.515625
+  - id: abyss_k_105_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_31/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8242.171875
+  - id: abyss_k_105_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_32/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8455.828125
+  - id: abyss_k_100_kc_4_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_33/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8669.484375
+  - id: abyss_k_100_kc_3_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_34/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8883.140625
+  - id: abyss_k_100_kc_2_prna_scaffolder_output
+    outputSource:
+      - align_reads_and_scaffold_prna_scaffolder_35/prna_scaffolder_output
+    type: Directory
+    'sbg:x': 1485.497802734375
+    'sbg:y': 9096.796875
+  - id: soapdenovo2_rascaf_scaffold
+    outputSource:
+      - perform_scaffolding_rascaf/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 1512
+  - id: rmegahit_rascaf_scaffold
+    outputSource:
+      - perform_scaffolding_rascaf_1/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 1725.65625
+  - id: masurca_rascaf_scaffold
+    outputSource:
+      - perform_scaffolding_rascaf_2/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 1939.3125
+  - id: abyss_k_95_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_3/rascaf_scaffold
+    type: File
+    label: abyss_k_95_kc_4_rascaf_output
+    'sbg:x': 1485.497802734375
+    'sbg:y': 2152.96875
+  - id: abyss_k_95_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_4/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 2366.625
+  - id: abyss_k_95_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_5/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 2580.28125
+  - id: abyss_k_90_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_6/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 2793.9375
+  - id: abyss_k_90_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_7/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3007.59375
+  - id: abyss_k_90_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_8/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3221.25
+  - id: abyss_k_140_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_9/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3434.90625
+  - id: abyss_k_140_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_10/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3648.5625
+  - id: abyss_k_140_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_11/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 3862.21875
+  - id: abyss_k_135_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_12/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 4075.875
+  - id: abyss_k_135_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_13/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 4289.53125
+  - id: abyss_k_135_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_14/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 4503.1875
+  - id: abyss_k_130_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_15/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 4716.84375
+  - id: abyss_k_130_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_16/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 4930.5
+  - id: abyss_k_130_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_17/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5144.15625
+  - id: abyss_k_125_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_18/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5357.8125
+  - id: abyss_k_125_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_19/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5571.46875
+  - id: abyss_k_125_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_20/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5785.125
+  - id: abyss_k_120_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_21/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 5998.78125
+  - id: abyss_k_120_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_22/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 6212.4375
+  - id: abyss_k_120_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_23/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 6426.09375
+  - id: abyss_k_115_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_24/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 6639.75
+  - id: abyss_k_115_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_25/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 6853.40625
+  - id: abyss_k_115_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_26/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 7067.0625
+  - id: abyss_k_110_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_27/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 7280.71875
+  - id: abyss_k_110_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_28/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 7494.375
+  - id: abyss_k_110_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_29/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 7708.03125
+  - id: abyss_k_105_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_30/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 7921.6875
+  - id: abyss_k_105_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_31/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8135.34375
+  - id: abyss_k_105_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_32/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8349
+  - id: abyss_k_100_kc_4_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_33/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8562.65625
+  - id: abyss_k_100_kc_3_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_34/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8776.3125
+  - id: abyss_k_100_kc_2_rascaf_output
+    outputSource:
+      - perform_scaffolding_rascaf_35/rascaf_scaffold
+    type: File
+    'sbg:x': 1485.497802734375
+    'sbg:y': 8989.96875
+steps:
+  - id: generate_assemblies
+    in:
+      - id: directory_with_input_reads
+        source: directory_with_input_reads
+      - id: cpu
+        source: cpu
+    out:
+      - id: abyss_assembly_k_95_kc_4
+      - id: abyss_assembly_k_95_kc_3
+      - id: abyss_assembly_k_95_kc_2
+      - id: abyss_assembly_k_90_kc_4
+      - id: abyss_assembly_k_90_kc_3
+      - id: abyss_assembly_k_90_kc_2
+      - id: abyss_assembly_k_140_kc_4
+      - id: abyss_assembly_k_140_kc_3
+      - id: abyss_assembly_k_140_kc_2
+      - id: abyss_assembly_k_135_kc_4
+      - id: abyss_assembly_k_135_kc_3
+      - id: abyss_assembly_k_135_kc_2
+      - id: abyss_assembly_k_130_kc_4
+      - id: abyss_assembly_k_130_kc_3
+      - id: abyss_assembly_k_130_kc_2
+      - id: abyss_assembly_k_125_kc_4
+      - id: abyss_assembly_k_125_kc_3
+      - id: abyss_assembly_k_125_kc_2
+      - id: abyss_assembly_k_120_kc_4
+      - id: abyss_assembly_k_120_kc_3
+      - id: abyss_assembly_k_120_kc_2
+      - id: abyss_assembly_k_115_kc_4
+      - id: abyss_assembly_k_115_kc_3
+      - id: abyss_assembly_k_115_kc_2
+      - id: abyss_assembly_k_110_kc_4
+      - id: abyss_assembly_k_110_kc_3
+      - id: abyss_assembly_k_110_kc_2
+      - id: abyss_assembly_k_105_kc_4
+      - id: abyss_assembly_k_105_kc_3
+      - id: abyss_assembly_k_105_kc_2
+      - id: abyss_assembly_k_100_kc_4
+      - id: abyss_assembly_k_100_kc_3
+      - id: abyss_assembly_k_100_kc_2
+      - id: masurca_assembly
+      - id: soapdenovo2_assembly
+      - id: megahit_assembly
+    run: >-
+      ../../fungal_genome_assemblies_and_annotation/0.0.1/generate_assemblies.cwl
+    label: generate_assemblies
+    'sbg:x': 264.5
+    'sbg:y': 5357.8125
+  - id: output_2_read_pair_files
+    in:
+      - id: directory_with_input_reads
+        source: directory_with_input_reads
+    out:
+      - id: left_reads
+      - id: right_reads
+    run: >-
+      ../../fungal_genome_assemblies_and_annotation/0.0.1/output_2_read_pair_files.cwl
+    label: output_2_read_pair_files
+    'sbg:x': 264.5
+    'sbg:y': 4998.984375
+  - id: align_reads_and_scaffold_prna_scaffolder
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/soapdenovo2_assembly
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 10566.796875
+  - id: align_reads_and_scaffold_prna_scaffolder_1
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/megahit_assembly
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 10417.96875
+  - id: align_reads_and_scaffold_prna_scaffolder_2
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/masurca_assembly
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 8780.859375
+  - id: align_reads_and_scaffold_prna_scaffolder_3
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_95_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 7143.75
+  - id: align_reads_and_scaffold_prna_scaffolder_4
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_95_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 6101.953125
+  - id: align_reads_and_scaffold_prna_scaffolder_5
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_95_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 5953.125
+  - id: align_reads_and_scaffold_prna_scaffolder_6
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_90_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 5804.296875
+  - id: align_reads_and_scaffold_prna_scaffolder_7
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_90_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 5655.46875
+  - id: align_reads_and_scaffold_prna_scaffolder_8
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_90_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 5506.640625
+  - id: align_reads_and_scaffold_prna_scaffolder_9
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_140_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 5357.8125
+  - id: align_reads_and_scaffold_prna_scaffolder_10
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_140_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 10269.140625
+  - id: align_reads_and_scaffold_prna_scaffolder_11
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_140_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 10120.3125
+  - id: align_reads_and_scaffold_prna_scaffolder_12
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_135_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 9971.484375
+  - id: align_reads_and_scaffold_prna_scaffolder_13
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_135_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 9822.65625
+  - id: align_reads_and_scaffold_prna_scaffolder_14
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_135_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 9673.828125
+  - id: align_reads_and_scaffold_prna_scaffolder_15
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_130_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 9525
+  - id: align_reads_and_scaffold_prna_scaffolder_16
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_130_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 9376.171875
+  - id: align_reads_and_scaffold_prna_scaffolder_17
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_130_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 9227.34375
+  - id: align_reads_and_scaffold_prna_scaffolder_18
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_125_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 9078.515625
+  - id: align_reads_and_scaffold_prna_scaffolder_19
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_125_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 8929.6875
+  - id: align_reads_and_scaffold_prna_scaffolder_20
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_125_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 8632.03125
+  - id: align_reads_and_scaffold_prna_scaffolder_21
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_120_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 8483.203125
+  - id: align_reads_and_scaffold_prna_scaffolder_22
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_120_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 8334.375
+  - id: align_reads_and_scaffold_prna_scaffolder_23
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_120_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 8185.546875
+  - id: align_reads_and_scaffold_prna_scaffolder_24
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_115_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 8036.71875
+  - id: align_reads_and_scaffold_prna_scaffolder_25
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_115_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 7887.890625
+  - id: align_reads_and_scaffold_prna_scaffolder_26
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_115_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 7739.0625
+  - id: align_reads_and_scaffold_prna_scaffolder_27
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_110_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 7590.234375
+  - id: align_reads_and_scaffold_prna_scaffolder_28
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_110_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 7441.40625
+  - id: align_reads_and_scaffold_prna_scaffolder_29
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_110_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 7292.578125
+  - id: align_reads_and_scaffold_prna_scaffolder_30
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_105_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 6994.921875
+  - id: align_reads_and_scaffold_prna_scaffolder_31
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_105_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 6846.09375
+  - id: align_reads_and_scaffold_prna_scaffolder_32
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_105_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 6697.265625
+  - id: align_reads_and_scaffold_prna_scaffolder_33
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_100_kc_4
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 6548.4375
+  - id: align_reads_and_scaffold_prna_scaffolder_34
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_100_kc_3
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 6399.609375
+  - id: align_reads_and_scaffold_prna_scaffolder_35
+    in:
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: contig_filename
+        source: generate_assemblies/abyss_assembly_k_100_kc_2
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: prna_scaffolder_output
+    run: ../../p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl
+    label: align_reads_and_scaffold_prna_scaffolder
+    'sbg:x': 1121.189453125
+    'sbg:y': 6250.78125
+  - id: perform_scaffolding_rascaf
+    in:
+      - id: raw_assembly_filename
+        source: generate_assemblies/soapdenovo2_assembly
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 5208.984375
+  - id: perform_scaffolding_rascaf_1
+    in:
+      - id: raw_assembly_filename
+        source: generate_assemblies/megahit_assembly
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 5060.15625
+  - id: perform_scaffolding_rascaf_2
+    in:
+      - id: raw_assembly_filename
+        source: generate_assemblies/masurca_assembly
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 3423.046875
+  - id: perform_scaffolding_rascaf_3
+    in:
+      - id: raw_assembly_filename
+        source: generate_assemblies/masurca_assembly
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 1785.9375
+  - id: perform_scaffolding_rascaf_4
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 744.140625
+  - id: perform_scaffolding_rascaf_5
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 595.3125
+  - id: perform_scaffolding_rascaf_6
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 446.484375
+  - id: perform_scaffolding_rascaf_7
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 297.65625
+  - id: perform_scaffolding_rascaf_8
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 148.828125
+  - id: perform_scaffolding_rascaf_9
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 0
+  - id: perform_scaffolding_rascaf_10
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 4911.328125
+  - id: perform_scaffolding_rascaf_11
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 4762.5
+  - id: perform_scaffolding_rascaf_12
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 4613.671875
+  - id: perform_scaffolding_rascaf_13
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 4464.84375
+  - id: perform_scaffolding_rascaf_14
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 4316.015625
+  - id: perform_scaffolding_rascaf_15
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 4167.1875
+  - id: perform_scaffolding_rascaf_16
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 4018.359375
+  - id: perform_scaffolding_rascaf_17
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 3869.53125
+  - id: perform_scaffolding_rascaf_18
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 3720.703125
+  - id: perform_scaffolding_rascaf_19
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 3571.875
+  - id: perform_scaffolding_rascaf_20
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 3274.21875
+  - id: perform_scaffolding_rascaf_21
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 3125.390625
+  - id: perform_scaffolding_rascaf_22
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 2976.5625
+  - id: perform_scaffolding_rascaf_23
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 2827.734375
+  - id: perform_scaffolding_rascaf_24
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 2678.90625
+  - id: perform_scaffolding_rascaf_25
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 2530.078125
+  - id: perform_scaffolding_rascaf_26
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 2381.25
+  - id: perform_scaffolding_rascaf_27
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 2232.421875
+  - id: perform_scaffolding_rascaf_28
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 2083.59375
+  - id: perform_scaffolding_rascaf_29
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 1934.765625
+  - id: perform_scaffolding_rascaf_30
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 1637.109375
+  - id: perform_scaffolding_rascaf_31
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 1488.28125
+  - id: perform_scaffolding_rascaf_32
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 1339.453125
+  - id: perform_scaffolding_rascaf_33
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 1190.625
+  - id: perform_scaffolding_rascaf_34
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 1041.796875
+  - id: perform_scaffolding_rascaf_35
+    in:
+      - id: raw_input_files_pair1
+        source: output_2_read_pair_files/left_reads
+      - id: threads
+        source: cpu
+      - id: raw_input_files_pair2
+        source: output_2_read_pair_files/right_reads
+    out:
+      - id: rascaf_scaffold
+    run: ../../rascaf/1.0.2/perform_scaffolding_rascaf.cwl
+    label: perform_scaffolding_rascaf
+    'sbg:x': 1121.189453125
+    'sbg:y': 892.96875
+requirements:
+  - class: SubworkflowFeatureRequirement
