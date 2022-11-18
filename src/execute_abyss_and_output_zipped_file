@@ -50,11 +50,12 @@ def main():
     for kc in options.min_k_mer_for_bm:
         for k in options.k_mer_size:
             cmd = f"abyss-pe k={k} kc={kc} name=abyss_assembly_{k}_{kc} B=2G j={options.cpu} {command}"
-            os.system(cmd)
+            print(cmd)
+            #os.system(cmd)
             
     # Compress all assemblies
     cmd = f"tar cvzf {options.output_filename} abyss_assembly_*-contigs.fa"
-    os.system(cmd)
+    #os.system(cmd)
 
 if __name__ == "__main__":
     main()
