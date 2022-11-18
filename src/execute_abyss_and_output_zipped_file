@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+##############################################################################################################################
+# 
+##############################################################################################################################
+from argparse import RawTextHelpFormatter
+
+import os
+import glob
+import argparse
+import sys
+
+def parseCommandLineArguments():
+
+    parser = argparse.ArgumentParser( prog = "execute_abyss_and_output_zipped_file", description = """Executes Abyss with multiple parameters and then merges the output from various parameters""", formatter_class = RawTextHelpFormatter )
+
+    parser.add_argument( "--directory_with_input_reads", help = "Enter the directory name that contains all the raw input reads", required = True )
+    parser.add_argument( "--cpu", "-n", help = "Enter the number of threads", default = 1)
+    
+    parser.add_argument( "--min_k_mer_for_bm",  help = "Minimum kmer kc=", nargs = "+", type = int, required = True )
+    parser.add_argument( "--k_mer_size", help = "Enter range of kmer sizes k=", nargs = "+", type = int, required = True )
+    
+    parser.add_argument( "--output_filename", help = "Enter the name of the output filename. All outputs will be gunzipped into one", required = True)
+    
+    return parser.parse_args()
+
+
+def main():
+    """
+    """
+    options = parseCommandLineArguments()
+    
+    # Assumes that the samples are paired ended
+    all_samples = sorted(glob.glob(f"{options.directory_with_input_reads}/*"))
+    
+    fhw = open(options.command_line_portion,"w")
+    lib = "lib='"
+    command = ""
+    i=0
+    while i<len(all_samples[::-1]):
+        lib += f"pe{i//2}"
+        if i+2 < len(all_samples):
+            lib+=" "
+        sample_def = f"pe{i//2}='/tmp/{all_samples[i].split('/')[-1]} /tmp/{all_samples[i+1].split('/')[-1]}'"
+        command += sample_def + " "
+        i+=2
+    lib+="'"
+    
+    command = lib +" "+command
+    
+    for kc in options.min_k_mer_for_bm:
+        for k in options.k_mer_size:
+            cmd = f"abyss-pe k={k} kc={kc} name=abyss_assembly_{k}_{kc} B=2G j={options.cpu} {command}"
+            os.system(cmd)
+            
+    # Compress all assemblies
+    cmd = f"tar cvzf {options.output_filename} abyss_assembly_*-contigs.fa"
+    os.system(cmd)
+
+if __name__ == "__main__":
+    main()
