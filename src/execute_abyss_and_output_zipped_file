@@ -40,7 +40,7 @@ def main():
         lib += f"pe{i//2}"
         if i+2 < len(all_samples):
             lib+=" "
-        sample_def = f"pe{i//2}='/tmp/{all_samples[i].split('/')[-1]} /tmp/{all_samples[i+1].split('/')[-1]}'"
+        sample_def = f"pe{i//2}='{options.directory_with_input_reads}/{all_samples[i].split('/')[-1]} {options.directory_with_input_reads}/{all_samples[i+1].split('/')[-1]}'"
         command += sample_def + " "
         i+=2
     lib+="'"
