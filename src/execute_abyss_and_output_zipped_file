@@ -54,7 +54,7 @@ def main():
             os.system(cmd)
             
     # Compress all assemblies
-    cmd = f"tar cvzf {options.output_filename} abyss_assembly_*-contigs.fa"
+    cmd = f"tar cvzf --dereference {options.output_filename} abyss_assembly_*-contigs.fa"
     os.system(cmd)
 
 if __name__ == "__main__":
