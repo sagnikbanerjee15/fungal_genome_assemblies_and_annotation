@@ -93,6 +93,8 @@ def main():
         print(cmd)
         os.system(cmd)
         
+        os.system(f"ls -lh p_rna_scaffolder_output")
+        
         cmd = f"mv p_rna_scaffolder_output/P_RNA_scaffolder.fasta abyss_assembly_{k}_{kc}_p_rna_scaffolder.fasta"
         os.system(cmd)
         
