@@ -24,7 +24,6 @@ def parseCommandLineArguments():
     
     return parser.parse_args()
 
-
 def main():
     """
     """

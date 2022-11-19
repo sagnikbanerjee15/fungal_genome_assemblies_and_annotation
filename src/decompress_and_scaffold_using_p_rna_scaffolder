@@ -10,6 +10,7 @@ import os
 import glob
 import argparse
 import sys
+import math
 
 def parseCommandLineArguments():
 
@@ -19,10 +20,26 @@ def parseCommandLineArguments():
     parser.add_argument( "--left_fastq", help = "Enter the left fastq file", required = True )
     parser.add_argument( "--right_fastq", help = "Enter the right fastq file", required = True )
     parser.add_argument( "--output_filename", help = "Enter the name of the outputfile in csv", required = True )
-    parser.add_argument( "--alignment_samfilename", help = "Enter the name of the alignment file in sam format", required = True )
     
     parser.add_argument( "--threads", type = int, default = 1)
     return parser.parse_args()
+
+def calculateParametersForSTARIndexGeneration(filename):
+    
+    fhr = open(filename,"r")
+    num_chromosomes = 0
+    reference_length = 0
+    for line in fhr:
+        if line[0]=='>':
+            num_chromosomes+=1
+        else:
+            reference_length+=len(line.strip())
+    fhr.close()
+    
+    genomeSAindexNbases = int(min(14, math.log2(reference_length)/2 - 1))
+    genomeChrBinNbits = int(min(18,math.log2(reference_length/num_chromosomes)))
+    
+    return genomeSAindexNbases, genomeChrBinNbits
 
 def main():
     """
@@ -40,9 +57,30 @@ def main():
     files_for_compression = []
     for abyss_assembly in abyss_assemblies:
         k, kc = abyss_assembly.split("_")[1], abyss_assembly.split("_")[2]
+        
+        genomeSAindexNbases, genomeChrBinNbits = calculateParametersForSTARIndexGeneration(abyss_assembly)
+        cmd  = "STAR"
+        cmd += f" --runMode genomeGenerate"
+        cmd += f" --genomeDir star_index"
+        cmd += f" --genomeSAindexNbases {genomeSAindexNbases}"
+        cmd += f" --genomeChrBinNbits {genomeChrBinNbits}"
+        cmd += f" --runThreadN {options.threads}"
+        cmd += f"--genomeFastaFiles {abyss_assembly}"
+        os.system(cmd)
+        
+        cmd  = f" STAR "
+        cmd += f" --genomeDir star_index "
+        cmd += f" --alignIntronMax 10000"
+        cmd += f" --outFilterMultimapNmax 500"
+        cmd += f" --alignIntronMin 20"
+        cmd += f" --outSAMtype SAM "
+        cmd += f" --outFileNamePrefix abyss_"
+        cmd += f" --readFilesIn {options.left_fastq} {options.right_fastq} "
+        os.system(cmd)
+        
         cmd  = f" P_RNA_scaffolder.sh "
         cmd += f" -d /software/P_RNA_scaffolder "
-        cmd += f" -i {options.alignment_samfilename}"
+        cmd += f" -i abyss_Aligned.out.sam "
         cmd += f" -j {abyss_assembly} "
         cmd += f" -F {options.left_fastq} "
         cmd += f" -R {options.right_fastq} "
