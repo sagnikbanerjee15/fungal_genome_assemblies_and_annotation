@@ -24,8 +24,8 @@ def parseCommandLineArguments():
     parser.add_argument( "--soapdenovo2_with_rascaf", help = "Enter the output for soapdenovo2 with rascaf", required = True )
     parser.add_argument( "--soapdenovo2_with_prna_scaffolder", help = "Enter the output for soapdenovo2 with prna scaffolder", required = True )
     
-    parser.add_argument( "--abyss_with_rascaf", help = "Enter the output for abyss with rascaf", nargs = "+", required = True )
-    parser.add_argument( "--abyss_with_prna_scaffolder", help = "Enter the output for abyss with prna scaffolder", nargs = "+", required = True )
+    parser.add_argument( "--abyss_with_rascaf", help = "Enter the output for abyss with rascaf", required = True )
+    parser.add_argument( "--abyss_with_prna_scaffolder", help = "Enter the output for abyss with prna scaffolder", required = True )
     
     parser.add_argument( "--output_filename", help = "Enter the name of the outputfile in csv", required = True )
     
@@ -54,10 +54,18 @@ def main():
     executeFGMP(options.soapdenovo2_with_rascaf, "soapdenovo2_with_rascaf_fgmp.output", options.threads)
     executeFGMP(f"{options.soapdenovo2_with_prna_scaffolder}/P_RNA_scaffolder.fasta", "soapdenovo2_with_prna_scaffolder_fgmp.output", options.threads)
         
-    for abyss_file in options.abyss_with_rascaf:
+    cmd = f"tar -xvhf {options.abyss_with_rascaf}"
+    os.system(cmd)
+    abyss_with_rascaf_files = glob.glob("abyss*rascaf*")
+    
+    cmd = f"tar -xvhf {options.abyss_with_rascaf}"
+    os.system(cmd)
+    abyss_with_prna_scaffolder_files = glob.glob("abyss*_p_rna_scaffolder*")
+    
+    for abyss_file in abyss_with_rascaf_files:
         executeFGMP(f"{abyss_file}", f"{abyss_file}_fgmp.output", options.threads)
-    for abyss_folder in options.abyss_with_prna_scaffolder:
-        executeFGMP(f"{abyss_folder}/P_RNA_scaffolder.fasta", f"{abyss_folder}_fgmp.output", options.threads)
+    for abyss_file in options.abyss_with_prna_scaffolder_files:
+        executeFGMP(f"{abyss_file}", f"{abyss_file}_fgmp.output", options.threads)
     
 
 if __name__ == "__main__":

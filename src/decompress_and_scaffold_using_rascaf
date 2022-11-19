@@ -91,9 +91,6 @@ def main():
         cmd += f" -o abyss_{k}_{kc}_rascaf"
         os.system(cmd)
     
-        """cmd = f"mv p_rna_scaffolder_output/P_RNA_scaffold.fasta abyss_assembly_{k}_{kc}_p_rna_scaffolder.fasta"
-        os.system(cmd)"""
-    
     cmd = f"tar -cvhf {options.output_filename} abyss_*rascaf*fa"
     os.system(cmd)
 
