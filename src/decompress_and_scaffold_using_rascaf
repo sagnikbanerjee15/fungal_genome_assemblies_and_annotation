@@ -73,14 +73,14 @@ def main():
         cmd += f" --alignIntronMax 10000"
         cmd += f" --outFilterMultimapNmax 500"
         cmd += f" --alignIntronMin 20"
-        cmd += f" --outSAMtype BAM Unsorted"
+        cmd += f" --outSAMtype BAM sortedByCoordinate"
         cmd += f" --outFileNamePrefix abyss_"
         cmd += f" --runThreadN {options.threads}"
         cmd += f" --readFilesIn {options.left_fastq} {options.right_fastq} "
         os.system(cmd)
         
         cmd  = f" rascaf "
-        cmd += f" -b abyss_Aligned.out.bam "
+        cmd += f" -b abyss_Aligned.sortedByCoord.out.bam "
         cmd += f" -f {abyss_assembly} "
         cmd += f" -o rascaf"
         os.system(cmd)
