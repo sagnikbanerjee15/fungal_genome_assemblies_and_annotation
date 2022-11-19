@@ -65,7 +65,7 @@ def main():
         cmd += f" --genomeSAindexNbases {genomeSAindexNbases}"
         cmd += f" --genomeChrBinNbits {genomeChrBinNbits}"
         cmd += f" --runThreadN {options.threads}"
-        cmd += f"--genomeFastaFiles {abyss_assembly}"
+        cmd += f" --genomeFastaFiles {abyss_assembly}"
         os.system(cmd)
         
         cmd  = f" STAR "
