@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+##############################################################################################################################
+#
+#
+##############################################################################################################################
+from argparse import RawTextHelpFormatter
+
+import os
+import glob
+import argparse
+import sys
+
+def parseCommandLineArguments():
+
+    parser = argparse.ArgumentParser( prog = "decompress_and_scaffold_using_p_rna_scaffolder", description = """Decompress each assembly, scaffold using prna_scaffolder and compress all the outputs""", formatter_class = RawTextHelpFormatter )
+
+    parser.add_argument( "--compressed_assembly_file_from_abyss", help = "Enter the compressed assembly file", required = True )
+    parser.add_argument( "--left_fastq", help = "Enter the left fastq file", required = True )
+    parser.add_argument( "--right_fastq", help = "Enter the right fastq file", required = True )
+    parser.add_argument( "--output_filename", help = "Enter the name of the outputfile in csv", required = True )
+    parser.add_argument( "--alignment_samfilename", help = "Enter the name of the alignment file in sam format", required = True )
+    
+    parser.add_argument( "--threads", type = int, default = 1)
+    return parser.parse_args()
+
+def main():
+    """
+    """
+    options = parseCommandLineArguments()
+    
+    # Expand abyss assemblies
+    cmd = f"tar -xvhf {options.compressed_assembly_file_from_abyss}"
+    os.system(cmd)
+    
+    # Collect the abyss assemblies
+    abyss_assemblies  = glob.glob("*-contigs.fa")
+    
+    # Scaffold each assembly
+    files_for_compression = []
+    for abyss_assembly in abyss_assemblies:
+        k, kc = abyss_assembly.split("_")[1], abyss_assembly.split("_")[2]
+        cmd  = f" P_RNA_scaffolder.sh "
+        cmd += f" -d /software/P_RNA_scaffolder "
+        cmd += f" -i {options.alignment_samfilename}"
+        cmd += f" -j {abyss_assembly} "
+        cmd += f" -F {options.left_fastq} "
+        cmd += f" -R {options.right_fastq} "
+        cmd += f" -t {options.cpu} "
+        cmd += f" -o p_rna_scaffolder_output"
+        os.system(cmd)
+        
+        cmd = f"mv p_rna_scaffolder_output/P_RNA_scaffolder.fasta abyss_assembly_{k}_{kc}_p_rna_scaffolder.fasta"
+        os.system(cmd)
+        
+        files_for_compression.append(f"abyss_assembly_{k}_{kc}_p_rna_scaffolder.fasta")
+    
+    cmd = f"tar -cvhf {options.output_filename} *fasta"
+    os.system(cmd)
+
+if __name__ == "__main__":
+    main()
