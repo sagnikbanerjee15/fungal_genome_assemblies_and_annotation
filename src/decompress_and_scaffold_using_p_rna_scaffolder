@@ -87,6 +87,7 @@ def main():
         cmd += f" -R {options.right_fastq} "
         cmd += f" -t {options.threads} "
         cmd += f" -o p_rna_scaffolder_output"
+        print(cmd)
         os.system(cmd)
         
         cmd = f"mv p_rna_scaffolder_output/P_RNA_scaffolder.fasta abyss_assembly_{k}_{kc}_p_rna_scaffolder.fasta"
