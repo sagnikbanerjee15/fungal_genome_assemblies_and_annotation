@@ -95,7 +95,7 @@ def main():
         
         os.system(f"ls -lh p_rna_scaffolder_output")
         
-        cmd = f"mv p_rna_scaffolder_output/P_RNA_scaffolder.fasta abyss_assembly_{k}_{kc}_p_rna_scaffolder.fasta"
+        cmd = f"mv p_rna_scaffolder_output/P_RNA_scaffold.fasta abyss_assembly_{k}_{kc}_p_rna_scaffolder.fasta"
         os.system(cmd)
         
         files_for_compression.append(f"abyss_assembly_{k}_{kc}_p_rna_scaffolder.fasta")
