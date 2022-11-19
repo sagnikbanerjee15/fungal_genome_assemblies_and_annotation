@@ -80,7 +80,7 @@ def main():
         os.system(cmd)
         
         cmd  = f" p_rna_scaffolder "
-        cmd += f" -d /software/P_RNA_scaffolder "
+        cmd += f" -d /P_RNA_scaffolder "
         cmd += f" -i abyss_Aligned.out.sam "
         cmd += f" -j {abyss_assembly} "
         cmd += f" -F {options.left_fastq} "
