@@ -87,6 +87,8 @@ def main():
         cmd += f" -R {options.right_fastq} "
         cmd += f" -t {options.threads} "
         cmd += f" -o p_rna_scaffolder_output"
+        cmd += f" 1> p_rna_scaffolder_{k}_{kc}.output"
+        cmd += f" 2> p_rna_scaffolder_{k}_{kc}.error"
         print(cmd)
         os.system(cmd)
         
