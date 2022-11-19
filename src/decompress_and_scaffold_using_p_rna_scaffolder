@@ -79,7 +79,7 @@ def main():
         cmd += f" --readFilesIn {options.left_fastq} {options.right_fastq} "
         os.system(cmd)
         
-        cmd  = f" P_RNA_scaffolder.sh "
+        cmd  = f" p_rna_scaffolder "
         cmd += f" -d /software/P_RNA_scaffolder "
         cmd += f" -i abyss_Aligned.out.sam "
         cmd += f" -j {abyss_assembly} "
