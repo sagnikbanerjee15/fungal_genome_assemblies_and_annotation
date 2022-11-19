@@ -57,6 +57,7 @@ def main():
     files_for_compression = []
     for abyss_assembly in abyss_assemblies:
         k, kc = abyss_assembly.split("/")[-1].split("_")[1], abyss_assembly.split("/")[-1].split("_")[2]
+        print(k, kc)
         
         genomeSAindexNbases, genomeChrBinNbits = calculateParametersForSTARIndexGeneration(abyss_assembly)
         cmd  = "STAR"
