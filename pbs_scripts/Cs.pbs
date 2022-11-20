@@ -7,7 +7,7 @@
 #SBATCH --qos=maizegdb
 #SBATCH --mem=200G
 #SBATCH --time=48:00:00
-#SBATCH --job-name="Cs"
+#SBATCH --job-name="Sg"
 #SBATCH --mail-user=sagnikbanerjee@gmail.com
 #SBATCH --mail-type=BEGIN
 #SBATCH --mail-type=END
@@ -17,18 +17,18 @@
 
 module load singularity
 FUNGAL_SPECIES="Cs"
-mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/validate_scaffold_fgmp_output_directory
-mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/validate_scaffold_fgmp_cache_directory
-mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/validate_scaffold_fgmp_tmp_directory
+mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/assemble_scaffold_validate_output_directory
+mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/assemble_scaffold_validate_cache_directory
+mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/assemble_scaffold_validate_tmp_directory
 
 cwltool \
 --singularity \
---outdir /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/validate_scaffold_fgmp_output_directory \
---cachedir /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/validate_scaffold_fgmp_cache_directory \
+--outdir /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/assemble_scaffold_validate_output_directory \
+--cachedir /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/assemble_scaffold_validate_cache_directory \
 --tmpdir-prefix /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/validate_scaffold_fgmp_tmp_directory \
-/project/maizegdb/sagnik/dockerized_tools_and_pipelines/fungal_genome_assemblies_and_annotation/0.0.1/validate_scaffold_fgmp.cwl \
+/project/maizegdb/sagnik/dockerized_tools_and_pipelines/fungal_genome_assemblies_and_annotation/0.0.1/assemble_scaffold_validate.cwl \
 --cpu 72 \
 --directory_with_input_reads_DNA /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES} \
 --directory_with_input_reads_RNA /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES} \
-1> /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/validate_scaffold_fgmp_output_directory.output \
-2> /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/validate_scaffold_fgmp_output_directory.error
+1> /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/assemble_scaffold_validate.output \
+2> /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/assemble_scaffold_validate.error
