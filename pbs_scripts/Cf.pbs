@@ -7,7 +7,7 @@
 #SBATCH --qos=maizegdb
 #SBATCH --mem=200G
 #SBATCH --time=48:00:00
-#SBATCH --job-name="Sg"
+#SBATCH --job-name="Cf"
 #SBATCH --mail-user=sagnikbanerjee@gmail.com
 #SBATCH --mail-type=BEGIN
 #SBATCH --mail-type=END
