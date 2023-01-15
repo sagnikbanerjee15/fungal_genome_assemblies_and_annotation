@@ -7,16 +7,16 @@
 #SBATCH --qos=maizegdb
 #SBATCH --mem=200G
 #SBATCH --time=1-00:00:00
-#SBATCH --job-name="megahit_rascaf_Cf"
+#SBATCH --job-name="megahit_rascaf_Cs"
 #SBATCH --mail-user=sagnikbanerjee15@gmail.com
 #SBATCH --mail-type=BEGIN
 #SBATCH --mail-type=END
 #SBATCH --mail-type=FAIL
-#SBATCH --output=/project/maizegdb/sagnik/3_fungal_genomes/scaffolding/megahit_rascaf/Cf.output 
-#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/scaffolding/megahit_rascaf/Cf.error
+#SBATCH --output=/project/maizegdb/sagnik/3_fungal_genomes/scaffolding/megahit_rascaf/Cs.output 
+#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/scaffolding/megahit_rascaf/Cs.error
 
 module load singularity
-FUNGAL_SPECIES="Cf"
+FUNGAL_SPECIES="Cs"
 mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/scaffolding/megahit_rascaf/${FUNGAL_SPECIES}
 
 cwltool \
