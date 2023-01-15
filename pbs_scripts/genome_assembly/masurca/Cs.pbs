@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#SBATCH -n 72
+#SBATCH -N 1
+#SBATCH --partition=short
+##SBATCH --partition=priority-mem768
+#SBATCH --qos=maizegdb
+#SBATCH --mem=200G
+#SBATCH --time=1-00:00:00
+#SBATCH --job-name="Cs"
+#SBATCH --mail-user=sagnikbanerjee15@gmail.com
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output=/project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/Cs.output
+#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/Cs.error
+
+module load singularity
+FUNGAL_SPECIES="Cs"
+mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_assembly/masurca/${FUNGAL_SPECIES}
+
+cwltool \
+--singularity \
+--outdir /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_assembly/masurca/${FUNGAL_SPECIES} \
+/project/maizegdb/sagnik/tools_and_pipelines/masurca/4.0.9/generate_config_file_and_perform_assembly.cwl \
+--cpu 72 \
+--directory_with_input_reads /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES} \
+1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}.output \
+2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}.error
