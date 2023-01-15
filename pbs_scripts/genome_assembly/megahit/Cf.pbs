@@ -1,0 +1,29 @@
+#!/bin/bash
+
+#SBATCH -n 72
+#SBATCH -N 1
+#SBATCH --partition=short
+##SBATCH --partition=priority-mem768
+#SBATCH --qos=maizegdb
+#SBATCH --mem=200G
+#SBATCH --time=1-00:00:00
+#SBATCH --job-name="Cf"
+#SBATCH --mail-user=sagnikbanerjee15@gmail.com
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output=/project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/Cf.output 
+#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/Cf.error
+
+module load singularity
+FUNGAL_SPECIES="Cf"
+mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_assembly/megahit/${FUNGAL_SPECIES}
+
+cwltool \
+--singularity \
+--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES} \
+/project/maizegdb/sagnik/tools_and_pipelines/megahit/1.2.9/merge_multiple_paired_ended_samples_and_assemble.cwl \
+--cpu 72 \
+--directory_with_input_reads /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES} \
+1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}.output \
+2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}.error
