@@ -22,7 +22,7 @@ mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_asse
 cwltool \
 --singularity \
 --outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/soapdenovo2/${FUNGAL_SPECIES} \
-/project/maizegdb/sagnik/tools_and_pipelines/soapdenovo2/1.2.9/generate_config_file_and_assemble.cwl \
+/project/maizegdb/sagnik/tools_and_pipelines/soapdenovo2/2.04/generate_config_file_and_assemble.cwl \
 --cpu 72 \
 --directory_with_input_reads /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES} \
 1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/soapdenovo2/${FUNGAL_SPECIES}.output \
