@@ -21,7 +21,7 @@ mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_asse
 
 cwltool \
 --singularity \
---outdir /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_assembly/masurca/${FUNGAL_SPECIES} \
+--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES} \
 /project/maizegdb/sagnik/tools_and_pipelines/masurca/4.0.9/generate_config_file_and_perform_assembly.cwl \
 --cpu 72 \
 --directory_with_input_reads /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES} \
