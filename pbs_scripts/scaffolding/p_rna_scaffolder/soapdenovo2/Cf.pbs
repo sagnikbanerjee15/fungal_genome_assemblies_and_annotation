@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#SBATCH -n 72
+#SBATCH -N 1
+#SBATCH --partition=short
+##SBATCH --partition=priority-mem768
+#SBATCH --qos=maizegdb
+#SBATCH --mem=200G
+#SBATCH --time=1-00:00:00
+#SBATCH --job-name="soapdenovo2_prna_scaffolder_Cf"
+#SBATCH --mail-user=sagnikbanerjee15@gmail.com
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output=/project/maizegdb/sagnik/3_fungal_genomes/scaffolding/soapdenovo2_prna_scaffolder/Cf.output 
+#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/scaffolding/soapdenovo2_prna_scaffolder/Cf.error
+
+module load singularity
+FUNGAL_SPECIES="Cf"
+mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/scaffolding/soapdenovo2_prna_scaffolder/${FUNGAL_SPECIES}
+
+cwltool \
+--singularity \
+--outdir /project/maizegdb/sagnik/3_fungal_genomes/scaffolding/soapdenovo2_prna_scaffolder/${FUNGAL_SPECIES} \
+/project/maizegdb/sagnik/tools_and_pipelines/p_rna_scaffolder/0.0.1/align_reads_and_scaffold_prna_scaffolder.cwl \
+--threads 72 \
+--contig_filename /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/soapdenovo2/${FUNGAL_SPECIES}/soapdenovo127mer_output.scafSeq \
+--raw_input_files_pair1 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_1.fastq \
+--raw_input_files_pair2 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_2.fastq \
+1> /project/maizegdb/sagnik/3_fungal_genomes/scaffolding/soapdenovo2_prna_scaffolder/${FUNGAL_SPECIES}.output \
+2> /project/maizegdb/sagnik/3_fungal_genomes/scaffolding/soapdenovo2_prna_scaffolder/${FUNGAL_SPECIES}.error
