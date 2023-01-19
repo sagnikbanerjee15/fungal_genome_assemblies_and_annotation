@@ -25,8 +25,8 @@ cwltool \
 /project/maizegdb/sagnik/tools_and_pipelines/megahit/1.2.9/merge_multiple_paired_ended_samples_and_assemble.cwl \
 --cpu 72 \
 --directory_with_input_reads /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES} \
-1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}.output \
-2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}.error
+1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_assembly.output \
+2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_assembly.error
 
 ################################################################################################################################################################
 # Align RNA-Seq reads to the assembled genome
@@ -39,8 +39,8 @@ cwltool \
 --reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
 --raw_input_files_pair1 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_1.fastq \
 --raw_input_files_pair2 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_2.fastq \
-1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}.output \
-2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}.error
+1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_rna_seq_alignments.output \
+2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_rna_seq_alignments.error
 
 ################################################################################################################################################################
 # Execute FGMP on the assembled genome
@@ -51,5 +51,5 @@ cwltool \
 /project/maizegdb/sagnik/tools_and_pipelines/fgmp/1.0.3/assess_quality_fgmp.cwl \
 --threads 72 \
 --genome_fastafile /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
-1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}.output \
-2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}.error
+1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_fgmp.output \
+2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_fgmp.error
