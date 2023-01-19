@@ -17,7 +17,6 @@
 
 module load singularity
 FUNGAL_SPECIES="Cf"
-mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_assembly/soapdenovo2/${FUNGAL_SPECIES}
 
 cwltool \
 --singularity \
