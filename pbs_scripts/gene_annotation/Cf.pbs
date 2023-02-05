@@ -29,7 +29,7 @@ then
 	cwltool \
 	--singularity \
 	--outdir /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES} \
-	/project/maizegdb/sagnik/fungal_genome_assemblies_and_annotation/0.0.1/perform_gene_annotation.cwl \
+	/project/maizegdb/sagnik/tools_and_pipelines/fungal_genome_assemblies_and_annotation/0.0.1/perform_gene_annotation.cwl \
 	--threads 72 \
 	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
 	--raw_input_files_pair1 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_1.fastq \
