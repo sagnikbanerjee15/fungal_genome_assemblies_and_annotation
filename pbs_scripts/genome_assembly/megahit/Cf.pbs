@@ -24,7 +24,7 @@ mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_asse
 # Perform genome assembly
 ################################################################################################################################################################
 
-if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}/primary.genome.scf.fasta ]
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/primary.genome.scf.fasta ]
 then
 	cwltool \
 	--singularity \
@@ -40,7 +40,7 @@ fi
 # Align RNA-Seq reads to the assembled genome
 ################################################################################################################################################################
 
-if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_rna_seq_alignments/merged_1_possorted.bam ]
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_rna_seq_alignments/merged_1_possorted.bam ]
 then 
 	cwltool \
 	--singularity \
