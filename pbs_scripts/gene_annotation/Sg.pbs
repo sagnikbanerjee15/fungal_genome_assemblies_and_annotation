@@ -7,13 +7,13 @@
 #SBATCH --qos=maizegdb
 #SBATCH --mem=200G
 #SBATCH --time=7-00:00:00
-#SBATCH --job-name="Cf"
+#SBATCH --job-name="Sg"
 #SBATCH --mail-user=sagnikbanerjee15@gmail.com
 #SBATCH --mail-type=BEGIN
 #SBATCH --mail-type=END
 #SBATCH --mail-type=FAIL
-#SBATCH --output=/project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/Cf.output 
-#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/Cf.error
+#SBATCH --output=/project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/Sg.output 
+#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/sg.error
 
 module load singularity
 FUNGAL_SPECIES="Sg"
