@@ -77,7 +77,7 @@ fi
 # Execute FGMP on the assembled genome
 ################################################################################################################################################################
 
-if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_fgmp/primary.genome.scf.fasta.unfiltered.renamed.hmmsearch.summary_report ]
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_fgmp/primary.genome.scf.fasta.unfiltered.renamed.hmmsearch.summary_report ]
 then 
 	cwltool \
 	--singularity \
@@ -92,14 +92,14 @@ fi
 ################################################################################################################################################################
 # Execute BUSCO on the assembled genome
 ################################################################################################################################################################
-if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_busco/full_table.tsv ]
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_busco/full_table.tsv ]
 then 
 	cwltool \
 	--singularity \
-	--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_busco \
+	--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_busco \
 	/project/maizegdb/sagnik/tools_and_pipelines/busco/5.4.5/busco_fungal_genome_assembly_qc.cwl \
 	--threads 72 \
 	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
-	1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_busco.output \
-	2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_busco.error
+	1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_busco.output \
+	2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_busco.error
 fi
