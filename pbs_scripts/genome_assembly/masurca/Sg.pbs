@@ -20,6 +20,10 @@ FUNGAL_SPECIES="Sg"
 mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_assembly/masurca/${FUNGAL_SPECIES}
 
 
+################################################################################################################################################################
+# Perform genome assembly
+################################################################################################################################################################
+
 if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}/primary.genome.scf.fasta ]
 then
 	cwltool \
@@ -35,6 +39,7 @@ fi
 ################################################################################################################################################################
 # Align RNA-Seq reads to the assembled genome
 ################################################################################################################################################################
+
 if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_rna_seq_alignments/merged_1_possorted.bam ]
 then 
 	cwltool \
@@ -50,13 +55,36 @@ then
 fi
 
 ################################################################################################################################################################
+# Align DNA-Seq reads to the assembled genome
+################################################################################################################################################################
+
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_dna_seq_alignments/bowtie2_align.output ]
+then 
+	cwltool \
+	--singularity \
+	--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_dna_seq_alignments \
+	/project/maizegdb/sagnik/tools_and_pipelines/bowtie/2.4.5/bowtie_create_index_and_align.cwl \
+	--threads 72 \
+	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}/primary.genome.scf.fasta \
+	--mate1 /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES}/merged_1.fastq \
+	--mate2 /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES}/merged_2.fastq \
+	--max_number_of_multple_alignments 1000 \
+	1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_dna_seq_alignments.output \
+	2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_dna_seq_alignments.error
+fi
+
+################################################################################################################################################################
 # Execute FGMP on the assembled genome
 ################################################################################################################################################################
-cwltool \
---singularity \
---outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_fgmp \
-/project/maizegdb/sagnik/tools_and_pipelines/fgmp/1.0.3/assess_quality_fgmp.cwl \
---threads 72 \
---genome_fastafile /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}/primary.genome.scf.fasta \
-1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_fgmp.output \
-2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_fgmp.error
+
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_fgmp/primary.genome.scf.fasta.unfiltered.renamed.hmmsearch.summary_report ]
+then 
+	cwltool \
+	--singularity \
+	--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_fgmp \
+	/project/maizegdb/sagnik/tools_and_pipelines/fgmp/1.0.3/assess_quality_fgmp.cwl \
+	--threads 72 \
+	--genome_fastafile /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}/primary.genome.scf.fasta \
+	1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_fgmp.output \
+	2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_fgmp.error
+fi

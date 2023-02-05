@@ -19,37 +19,72 @@ module load singularity
 FUNGAL_SPECIES="Cf"
 mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/${FUNGAL_SPECIES}/genome_assembly/megahit/${FUNGAL_SPECIES}
 
-cwltool \
---singularity \
---outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES} \
-/project/maizegdb/sagnik/tools_and_pipelines/megahit/1.2.9/merge_multiple_paired_ended_samples_and_assemble.cwl \
---cpu 72 \
---directory_with_input_reads /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES} \
-1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_assembly.output \
-2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_assembly.error
+
+################################################################################################################################################################
+# Perform genome assembly
+################################################################################################################################################################
+
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}/primary.genome.scf.fasta ]
+then
+	cwltool \
+	--singularity \
+	--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES} \
+	/project/maizegdb/sagnik/tools_and_pipelines/megahit/1.2.9/merge_multiple_paired_ended_samples_and_assemble.cwl \
+	--cpu 72 \
+	--directory_with_input_reads /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES} \
+	1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_assembly.output \
+	2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_assembly.error
+fi
 
 ################################################################################################################################################################
 # Align RNA-Seq reads to the assembled genome
 ################################################################################################################################################################
-cwltool \
---singularity \
---outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_rna_seq_alignments \
-/project/maizegdb/sagnik/tools_and_pipelines/star/2.7.9a/star_generate_index_and_align.cwl \
---threads 72 \
---reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
---raw_input_files_pair1 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_1.fastq \
---raw_input_files_pair2 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_2.fastq \
-1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_rna_seq_alignments.output \
-2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_rna_seq_alignments.error
+
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_rna_seq_alignments/merged_1_possorted.bam ]
+then 
+	cwltool \
+	--singularity \
+	--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_rna_seq_alignments \
+	/project/maizegdb/sagnik/tools_and_pipelines/star/2.7.9a/star_generate_index_and_align.cwl \
+	--threads 72 \
+	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
+	--raw_input_files_pair1 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_1.fastq \
+	--raw_input_files_pair2 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_2.fastq \
+	1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_rna_seq_alignments.output \
+	2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_rna_seq_alignments.error
+fi
+
+################################################################################################################################################################
+# Align DNA-Seq reads to the assembled genome
+################################################################################################################################################################
+
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_dna_seq_alignments/bowtie2_align.output ]
+then 
+	cwltool \
+	--singularity \
+	--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_dna_seq_alignments \
+	/project/maizegdb/sagnik/tools_and_pipelines/bowtie/2.4.5/bowtie_create_index_and_align.cwl \
+	--threads 72 \
+	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
+	--mate1 /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES}/merged_1.fastq \
+	--mate2 /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES}/merged_2.fastq \
+	--max_number_of_multple_alignments 1000 \
+	1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_dna_seq_alignments.output \
+	2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_dna_seq_alignments.error
+fi
 
 ################################################################################################################################################################
 # Execute FGMP on the assembled genome
 ################################################################################################################################################################
-cwltool \
---singularity \
---outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_fgmp \
-/project/maizegdb/sagnik/tools_and_pipelines/fgmp/1.0.3/assess_quality_fgmp.cwl \
---threads 72 \
---genome_fastafile /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
-1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_fgmp.output \
-2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_fgmp.error
+
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/masurca/${FUNGAL_SPECIES}_fgmp/primary.genome.scf.fasta.unfiltered.renamed.hmmsearch.summary_report ]
+then 
+	cwltool \
+	--singularity \
+	--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_fgmp \
+	/project/maizegdb/sagnik/tools_and_pipelines/fgmp/1.0.3/assess_quality_fgmp.cwl \
+	--threads 72 \
+	--genome_fastafile /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
+	1> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_fgmp.output \
+	2> /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}_fgmp.error
+fi
