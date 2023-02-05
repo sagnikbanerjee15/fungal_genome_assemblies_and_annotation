@@ -63,7 +63,7 @@ then
 	cwltool \
 	--singularity \
 	--outdir /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/soapdenovo2/${FUNGAL_SPECIES}_dna_seq_alignments \
-	/project/maizegdb/sagnik/tools_and_pipelines/bowtie/2.4.5/bowtie_create_index_and_align.cwl \
+	/project/maizegdb/sagnik/tools_and_pipelines/bowtie2/2.4.5/bowtie_create_index_and_align.cwl \
 	--threads 72 \
 	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/soapdenovo2/${FUNGAL_SPECIES}/soapdenovo127mer_output.scafSeq  \
 	--mate1 /project/maizegdb/sagnik/3_fungal_genomes/DNA-seq/${FUNGAL_SPECIES}/merged_1.fastq \
