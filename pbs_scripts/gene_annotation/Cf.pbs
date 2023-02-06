@@ -53,5 +53,5 @@ then
 	--denovo_transcripts /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/spades_assembly/transcripts.fasta \
 	--gtf /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/stringtie_assembled.gtf \
 	1> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_blastn_results.output \
-	2> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}blastn_results.error
+	2> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_blastn_results.error
 fi
