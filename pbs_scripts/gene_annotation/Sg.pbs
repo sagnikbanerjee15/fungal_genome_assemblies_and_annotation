@@ -29,6 +29,7 @@ then
 	cwltool \
 	--singularity \
 	--outdir /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES} \
+	--cachedir /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_cache \
 	/project/maizegdb/sagnik/tools_and_pipelines/fungal_genome_assemblies_and_annotation/0.0.1/perform_gene_annotation.cwl \
 	--threads 72 \
 	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
@@ -36,22 +37,4 @@ then
 	--raw_input_files_pair2 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_2.fastq \
 	1> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}.output \
 	2> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}.error
-fi
-
-################################################################################################################################################################
-# Compare de novo assembly with genome guided assembly
-################################################################################################################################################################
-
-if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/blastn_results ]
-then
-	cwltool \
-	--singularity \
-	--outdir /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES} \
-	/project/maizegdb/sagnik/tools_and_pipelines/fungal_genome_assemblies_and_annotation/0.0.1/compare_denovo_and_genome_guided_transcriptomes.cwl \
-	--threads 72 \
-	--genomic_reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
-	--denovo_transcripts /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/spades_assembly/transcripts.fasta \
-	--gtf /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/stringtie_assembled.gtf \
-	1> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_blastn_results.output \
-	2> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_blastn_results.error
 fi
