@@ -24,7 +24,7 @@ mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPEC
 # Perform genome assembly
 ################################################################################################################################################################
 
-if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/stringtie_assembled.gtf ]
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/stringtie_assembled_only_short_reads.gtf ]
 then
 	cwltool \
 	--singularity \
@@ -37,4 +37,23 @@ then
 	--raw_input_files_pair2 /project/maizegdb/sagnik/3_fungal_genomes/RNA-seq/${FUNGAL_SPECIES}/merged_2.fastq \
 	1> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}.output \
 	2> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}.error
+fi
+
+################################################################################################################################################################
+# Annotate CDS region
+################################################################################################################################################################
+
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan/stringtie_assembled_only_short_reads.gtf ]
+then
+	cwltool \
+	--singularity \
+	--outdir /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan \
+	--cachedir /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan_cache \
+	/project/maizegdb/sagnik/tools_and_pipelines/codan/1.2/reannotate_gtf_with_CDS.cwl \
+	--threads 72 \
+	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
+	--model FUNGI_FULL \
+	--gtf /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/stringtie_assembled_only_short_reads.gtf
+	1> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan.output \
+	2> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan.error
 fi
