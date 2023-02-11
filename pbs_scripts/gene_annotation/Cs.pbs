@@ -49,7 +49,7 @@ then
 	--singularity \
 	--outdir /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan \
 	--cachedir /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan_cache \
-	/project/maizegdb/sagnik/tools_and_pipelines/codan/1.2/reannotate_gtf_with_CDS.cwl \
+	/project/maizegdb/sagnik/tools_and_pipelines/codan/1.2/reannotate_gtf_with_cds.cwl \
 	--threads 72 \
 	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
 	--model FUNGI_FULL \
