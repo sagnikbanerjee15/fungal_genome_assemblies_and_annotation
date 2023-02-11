@@ -53,7 +53,7 @@ then
 	--threads 72 \
 	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
 	--model FUNGI_FULL \
-	--gtf /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/stringtie_assembled_only_short_reads.gtf
+	--gtf /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/stringtie_assembled_only_short_reads.gtf \
 	1> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan.output \
 	2> /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan.error
 fi
