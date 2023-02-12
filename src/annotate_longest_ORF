@@ -158,7 +158,7 @@ def findLongestORF(transcripts):
                     #print(protein_for_check[:-1], len(protein_for_check[:-1]))
                     #print(pep_portion==protein_for_check[:-1])
                     transcript_to_CDS[transcript_id]["start"] = start_CDS
-                    transcript_to_CDS[transcript_id]["stop"] = stop_CDS
+                    transcript_to_CDS[transcript_id]["end"] = stop_CDS
     return transcript_to_CDS
             
 
