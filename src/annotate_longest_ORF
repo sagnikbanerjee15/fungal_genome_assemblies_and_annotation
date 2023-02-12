@@ -133,7 +133,8 @@ def findLongestORF(transcripts):
         
         if max(transcript_to_max_length_pep_all_3_frames[transcript_id]) >= min_pep_length_wrt_transcript*(len(transcripts[transcript_id]))//3:
             selected_frame = transcript_to_max_length_pep_all_3_frames[transcript_id].index(max(transcript_to_max_length_pep_all_3_frames[transcript_id]))
-            
+            protein = transcript_to_pep_all_3_frames[transcript_id][selected_frame]
+            print(protein)
             
 
 def readFromFastaFileAndFindLongestORF(options):
