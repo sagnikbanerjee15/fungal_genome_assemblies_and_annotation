@@ -154,7 +154,7 @@ def findLongestORF(transcripts):
                         else:
                             protein_for_check += codontable[codon]
                     print(protein_for_check[:-1], len(protein_for_check[:-1]))
-                    print(protein==protein_for_check[:-1])
+                    print(pep_portion==protein_for_check[:-1])
         return
             
 
