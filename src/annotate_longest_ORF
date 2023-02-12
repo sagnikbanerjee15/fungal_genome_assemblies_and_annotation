@@ -134,7 +134,13 @@ def findLongestORF(transcripts):
         if max(transcript_to_max_length_pep_all_3_frames[transcript_id]) >= min_pep_length_wrt_transcript*(len(transcripts[transcript_id]))//3:
             selected_frame = transcript_to_max_length_pep_all_3_frames[transcript_id].index(max(transcript_to_max_length_pep_all_3_frames[transcript_id]))
             protein = transcript_to_pep_all_3_frames[transcript_id][selected_frame]
-            print(protein)
+            for pep_portion_i, pep_portion in enumerate(protein.split("*")):
+                if len(pep_portion) == max(transcript_to_max_length_pep_all_3_frames[transcript_id]):
+                    start_codon = 0
+                    for i in range(pep_portion_i):
+                        start_codon += len(protein.split("*")[i]) + 1
+                    stop_codon = start_codon + len(protein.split('*')[pep_portion_i])
+                    print(start_codon, stop_codon)
             
 
 def readFromFastaFileAndFindLongestORF(options):
