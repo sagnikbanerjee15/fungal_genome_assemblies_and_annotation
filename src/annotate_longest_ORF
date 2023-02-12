@@ -117,7 +117,7 @@ def findLongestORF(transcripts):
     for transcript_id in transcripts:
         transcript_to_CDS[transcript_id] = {"start":-1,
                                             "end":-1}
-        transcript_to_max_length_pep_all_3_frames[transcript_id] = {}
+        transcript_to_max_length_pep_all_3_frames[transcript_id] = []
         transcript_to_pep_all_3_frames[transcript_id] = []
         for frame,seq in enumerate([transcripts[transcript_id], transcripts[transcript_id][1:], transcripts[transcript_id][2:]]):
             protein = ""
