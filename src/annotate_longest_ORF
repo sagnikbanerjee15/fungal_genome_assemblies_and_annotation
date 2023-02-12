@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+
+from argparse import RawTextHelpFormatter
+
+import os
+import glob
+import argparse
+import sys
+import math
+
+codontable = {
+    'TCA': 'S',    # Serina
+    'TCC': 'S',    # Serina
+    'TCG': 'S',    # Serina
+    'TCT': 'S',    # Serina
+    'TTC': 'F',    # Fenilalanina
+    'TTT': 'F',    # Fenilalanina
+    'TTA': 'L',    # Leucina
+    'TTG': 'L',    # Leucina
+    'TAC': 'Y',    # Tirosina
+    'TAT': 'Y',    # Tirosina
+    'TAA': '*',    # Stop
+    'TAG': '*',    # Stop
+    'TGC': 'C',    # Cisteina
+    'TGT': 'C',    # Cisteina
+    'TGA': '*',    # Stop
+    'TGG': 'W',    # Triptofano
+    'CTA': 'L',    # Leucina
+    'CTC': 'L',    # Leucina
+    'CTG': 'L',    # Leucina
+    'CTT': 'L',    # Leucina
+    'CCA': 'P',    # Prolina
+    'CCC': 'P',    # Prolina
+    'CCG': 'P',    # Prolina
+    'CCT': 'P',    # Prolina
+    'CAC': 'H',    # Histidina
+    'CAT': 'H',    # Histidina
+    'CAA': 'Q',    # Glutamina
+    'CAG': 'Q',    # Glutamina
+    'CGA': 'R',    # Arginina
+    'CGC': 'R',    # Arginina
+    'CGG': 'R',    # Arginina
+    'CGT': 'R',    # Arginina
+    'ATA': 'I',    # Isoleucina
+    'ATC': 'I',    # Isoleucina
+    'ATT': 'I',    # Isoleucina
+    'ATG': 'M',    # Methionina
+    'ACA': 'T',    # Treonina
+    'ACC': 'T',    # Treonina
+    'ACG': 'T',    # Treonina
+    'ACT': 'T',    # Treonina
+    'AAC': 'N',    # Asparagina
+    'AAT': 'N',    # Asparagina
+    'AAA': 'K',    # Lisina
+    'AAG': 'K',    # Lisina
+    'AGC': 'S',    # Serina
+    'AGT': 'S',    # Serina
+    'AGA': 'R',    # Arginina
+    'AGG': 'R',    # Arginina
+    'GTA': 'V',    # Valina
+    'GTC': 'V',    # Valina
+    'GTG': 'V',    # Valina
+    'GTT': 'V',    # Valina
+    'GCA': 'A',    # Alanina
+    'GCC': 'A',    # Alanina
+    'GCG': 'A',    # Alanina
+    'GCT': 'A',    # Alanina
+    'GAC': 'D',    # Acido Aspartico
+    'GAT': 'D',    # Acido Aspartico
+    'GAA': 'E',    # Acido Glutamico
+    'GAG': 'E',    # Acido Glutamico
+    'GGA': 'G',    # Glicina
+    'GGC': 'G',    # Glicina
+    'GGG': 'G',    # Glicina
+    'GGT': 'G',    # Glicina
+    'TAG': '*',    # Stop
+    'TAA': '*',    # Stop
+    'TGA': '*'     # Stop
+}
+def parseCommandLineArguments():
+
+    parser = argparse.ArgumentParser( prog = "annotate_longest_ORF", description = """Find the longest ORF""", formatter_class = RawTextHelpFormatter )
+
+    parser.add_argument( "--transcripts_fasta", help = "Enter the fasta file", required = True )
+    parser.add_argument( "--transcripts_gtf_file_with_cds", help = "Enter the outputfilename", required = True )
+    return parser.parse_args()
+
+def readFromFastaFile(filename):
+    """
+    """
+    
+    transcripts = {}
+    fhr = open(filename,"r")
+    transcript_id = ""
+    while True:
+        line = fhr.readline()
+        if not line: break
+        if line[0] == ">":
+            transcript_id = line.strip().split()[0][1:]
+            transcripts[transcript_id] = ""
+        else:
+            transcripts[transcript_id] += line.strip()
+    fhr.close()
+    return transcripts
+
+def findAllATG(transcript_seq):
+    
+    return [i for i in range(len(transcript_seq)) if transcript_seq.startswith('ATG', i)]
+
+def findLongestORF(transcripts):
+    """
+    """
+    transcript_to_CDS = {}
+    transcript_to_pep_all_3_frames = {}
+    for transcript_id in transcripts:
+        transcript_to_CDS[transcript_id] = {"start":-1,
+                                            "end":-1}
+        transcript_to_pep_all_3_frames[transcript_id] = {}
+        for frame,seq in enumerate([transcripts[transcript_id], transcripts[transcript_id][1:], transcripts[transcript_id][2:]]):
+            protein = ""
+            for i in range(0, len(seq), 3):
+                codon = seq[i:i + 3]
+                protein+= codontable[codon]
+            transcript_to_pep_all_3_frames[transcript_id][f"frame_{frame}"] = protein
+            print(transcript_id, frame, protein)
+            
+
+def readFromFastaFileAndFindLongestORF(options):
+    """
+    """
+    transcripts = readFromFastaFile(options.transcripts_fasta)
+    findLongestORF(transcripts)
+    
+
+def main():
+    """
+    """
+    options = parseCommandLineArguments()
+    
+    readFromFastaFileAndFindLongestORF(options)
+    
+    
+if __name__ == "__main__":
+    main()
