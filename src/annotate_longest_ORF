@@ -143,7 +143,7 @@ def findLongestORF(transcripts):
                     stop_codon = start_codon + len(protein.split('*')[pep_portion_i])
                     start_CDS = start_codon * 3 + selected_frame
                     stop_CDS = stop_codon * 3 + selected_frame
-                    print(start_codon, stop_codon, stop_codon - start_codon + 1, pep_portion, len(pep_portion))
+                    print(start_codon, stop_codon, stop_codon - start_codon + 1, pep_portion, len(pep_portion), start_CDS, stop_CDS)
                     protein_for_check = ""
                     for i in range(0, len(transcripts[transcript_id][start_CDS:stop_CDS]), 3):
                         codon = seq[i:i + 3]
@@ -153,6 +153,7 @@ def findLongestORF(transcripts):
                             protein_for_check += codontable[codon]
                     print(protein_for_check)
                     print(protein==protein_for_check)
+        return
             
 
 def readFromFastaFileAndFindLongestORF(options):
