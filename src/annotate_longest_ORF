@@ -172,7 +172,7 @@ def readFromFastaFileAndFindLongestORF(options):
         start_CDS = transcript_to_CDS[transcript_id]["start"]
         stop_CDS = transcript_to_CDS[transcript_id]["stop"]
         line = [transcript_id,"longestORF","CDS", f"{start_CDS}", f"{stop_CDS}", "1000","." ,"."]
-        fhw.write()
+        fhw.write("\t".join(line))
         fhw.write("\n")
     fhw.close()
     
