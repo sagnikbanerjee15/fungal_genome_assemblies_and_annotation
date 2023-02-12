@@ -112,7 +112,7 @@ def findLongestORF(transcripts):
     """
     min_pep_length_wrt_transcript = 0.5
     transcript_to_CDS = {}
-    transcript_to_max_length_pep_all_3_frames = []
+    transcript_to_max_length_pep_all_3_frames = {}
     transcript_to_pep_all_3_frames = {}
     for transcript_id in transcripts:
         transcript_to_CDS[transcript_id] = {"start":-1,
