@@ -110,12 +110,15 @@ def findAllATG(transcript_seq):
 def findLongestORF(transcripts):
     """
     """
+    min_pep_length_wrt_transcript = 0.5
     transcript_to_CDS = {}
-    transcript_to_max_length_pep_all_3_frames = {}
+    transcript_to_max_length_pep_all_3_frames = []
+    transcript_to_pep_all_3_frames = {}
     for transcript_id in transcripts:
         transcript_to_CDS[transcript_id] = {"start":-1,
                                             "end":-1}
         transcript_to_max_length_pep_all_3_frames[transcript_id] = {}
+        transcript_to_pep_all_3_frames[transcript_id] = []
         for frame,seq in enumerate([transcripts[transcript_id], transcripts[transcript_id][1:], transcripts[transcript_id][2:]]):
             protein = ""
             for i in range(0, len(seq), 3):
@@ -124,8 +127,13 @@ def findLongestORF(transcripts):
                     protein += "*"
                 else:
                     protein+= codontable[codon]
-            transcript_to_max_length_pep_all_3_frames[transcript_id][f"frame_{frame}"] = max([len(pep) for pep in protein.split("*")])
-            print(transcript_id, frame, transcript_to_max_length_pep_all_3_frames[transcript_id][f"frame_{frame}"], (len(transcripts[transcript_id]))//3)
+            transcript_to_max_length_pep_all_3_frames[transcript_id].append( max([len(pep) for pep in protein.split("*")]) )
+            transcript_to_pep_all_3_frames[transcript_id].append( protein )
+            print(transcript_id, frame, transcript_to_max_length_pep_all_3_frames[transcript_id][frame], (len(transcripts[transcript_id]))//3)
+        
+        if max(transcript_to_max_length_pep_all_3_frames[transcript_id]) >= min_pep_length_wrt_transcript*(len(transcripts[transcript_id]))//3:
+            selected_frame = transcript_to_max_length_pep_all_3_frames[transcript_id].index(max(transcript_to_max_length_pep_all_3_frames[transcript_id]))
+            
             
 
 def readFromFastaFileAndFindLongestORF(options):
