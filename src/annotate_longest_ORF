@@ -125,7 +125,7 @@ def findLongestORF(transcripts):
                 else:
                     protein+= codontable[codon]
             transcript_to_max_length_pep_all_3_frames[transcript_id][f"frame_{frame}"] = max([len(pep) for pep in protein.split("*")])
-            print(transcript_id, frame, protein, len(transcripts[transcript_id]))
+            print(transcript_id, frame, len(transcripts[transcript_id]))
             
 
 def readFromFastaFileAndFindLongestORF(options):
