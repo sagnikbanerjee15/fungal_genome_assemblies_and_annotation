@@ -129,7 +129,7 @@ def findLongestORF(transcripts):
                     protein+= codontable[codon]
             transcript_to_max_length_pep_all_3_frames[transcript_id].append( max([len(pep) for pep in protein.split("*")]) )
             transcript_to_pep_all_3_frames[transcript_id].append( protein )
-            print(transcript_id, frame, transcript_to_max_length_pep_all_3_frames[transcript_id][frame], (len(transcripts[transcript_id]))//3)
+            #print(transcript_id, frame, transcript_to_max_length_pep_all_3_frames[transcript_id][frame], (len(transcripts[transcript_id]))//3)
         
         if max(transcript_to_max_length_pep_all_3_frames[transcript_id]) >= min_pep_length_wrt_transcript*(len(transcripts[transcript_id]))//3:
             selected_frame = transcript_to_max_length_pep_all_3_frames[transcript_id].index(max(transcript_to_max_length_pep_all_3_frames[transcript_id]))
@@ -143,7 +143,8 @@ def findLongestORF(transcripts):
                     stop_codon = start_codon + len(protein.split('*')[pep_portion_i])
                     start_CDS = start_codon * 3 + selected_frame
                     stop_CDS = stop_codon * 3 + selected_frame + 1
-                    print(selected_frame, start_codon, stop_codon, stop_codon - start_codon + 1, pep_portion == protein[start_codon:stop_codon], len(pep_portion), start_CDS, stop_CDS)
+                    #print(selected_frame, start_codon, stop_codon, stop_codon - start_codon + 1, pep_portion == protein[start_codon:stop_codon], len(pep_portion), start_CDS, stop_CDS)
+                    """
                     protein_for_check = ""
                     
                     seq = transcripts[transcript_id][start_CDS:stop_CDS]
@@ -153,16 +154,20 @@ def findLongestORF(transcripts):
                             protein_for_check += "*"
                         else:
                             protein_for_check += codontable[codon]
+                    """
                     #print(protein_for_check[:-1], len(protein_for_check[:-1]))
-                    print(pep_portion==protein_for_check[:-1])
-        return
+                    #print(pep_portion==protein_for_check[:-1])
+                    transcript_to_CDS[transcript_id]["start"] = start_CDS
+                    transcript_to_CDS[transcript_id]["stop"] = stop_CDS
+    return transcript_to_CDS
             
 
 def readFromFastaFileAndFindLongestORF(options):
     """
     """
     transcripts = readFromFastaFile(options.transcripts_fasta)
-    findLongestORF(transcripts)
+    transcript_to_CDS = findLongestORF(transcripts)
+    
     
 
 def main():
