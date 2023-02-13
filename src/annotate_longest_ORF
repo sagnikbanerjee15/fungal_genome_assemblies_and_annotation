@@ -144,7 +144,7 @@ def findLongestORF(transcripts):
                     start_CDS = start_codon * 3 + selected_frame
                     stop_CDS = stop_codon * 3 + selected_frame + 1
                     if (stop_CDS - start_CDS +1) > len(transcripts[transcript_id]):
-                        stop_CDS = start_CDS+len(transcripts[transcript_id])
+                        stop_CDS = len(transcripts[transcript_id])
                     #print(selected_frame, start_codon, stop_codon, stop_codon - start_codon + 1, pep_portion == protein[start_codon:stop_codon], len(pep_portion), start_CDS, stop_CDS)
                     """
                     protein_for_check = ""
