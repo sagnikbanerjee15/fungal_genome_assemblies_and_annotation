@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#SBATCH -n 72
+#SBATCH -N 1
+#SBATCH --partition=medium
+##SBATCH --partition=priority-mem768
+#SBATCH --qos=maizegdb
+#SBATCH --mem=200G
+#SBATCH --time=7-00:00:00
+#SBATCH --job-name="Cs"
+#SBATCH --mail-user=sagnikbanerjee15@gmail.com
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+#SBATCH --output=/project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/Cs.output 
+#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/Cs.error
+
+module load singularity
+FUNGAL_SPECIES="Cs"
+mkdir -p /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES}
+
+
+if [ ! -f /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES}/stringtie_assembled_only_short_reads.gtfXXX ]
+then
+	cwltool \
+	--singularity \
+	--outdir /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES} \
+	--cachedir /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES}_cache \
+	/project/maizegdb/sagnik/tools_and_pipelines/fungal_genome_assemblies_and_annotation/0.0.1/perform_functional_annotation.cwl \
+	--threads 72 \
+	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
+	--gtf /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/stringtie_assembled_only_short_reads.gtf \ 
+	1> /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES}.output \
+	2> /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES}.error
+fi
