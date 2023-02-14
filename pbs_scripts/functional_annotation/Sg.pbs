@@ -13,7 +13,7 @@
 #SBATCH --mail-type=END
 #SBATCH --mail-type=FAIL
 #SBATCH --output=/project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/Sg.output 
-#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/sg.error
+#SBATCH --error=/project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/Sg.error
 
 module load singularity
 FUNGAL_SPECIES="Sg"
