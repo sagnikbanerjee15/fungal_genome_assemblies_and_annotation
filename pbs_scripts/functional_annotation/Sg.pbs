@@ -29,7 +29,8 @@ then
 	/project/maizegdb/sagnik/tools_and_pipelines/fungal_genome_assemblies_and_annotation/0.0.1/perform_functional_annotation.cwl \
 	--threads 72 \
 	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
-	--gtf /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}/stringtie_assembled_only_short_reads.gtf \
+	--gtf /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan/longest_orf_with_cds.gtf \
+	--blast_db /project/maizegdb/sagnik/3_fungal_genomes/nt \
 	1> /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES}.output \
 	2> /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES}.error
 fi
