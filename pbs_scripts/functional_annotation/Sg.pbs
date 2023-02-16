@@ -6,7 +6,7 @@
 ##SBATCH --partition=priority-mem768
 #SBATCH --qos=maizegdb
 #SBATCH --mem=200G
-#SBATCH --time=1-00:00:00
+#SBATCH --time=3-00:00:00
 #SBATCH --job-name="Sg"
 #SBATCH --mail-user=sagnikbanerjee15@gmail.com
 #SBATCH --mail-type=BEGIN
