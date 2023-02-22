@@ -30,7 +30,8 @@ then
 	--threads 72 \
 	--reference /project/maizegdb/sagnik/3_fungal_genomes/genome_assembly/megahit/${FUNGAL_SPECIES}/final.contigs.fa \
 	--gtf /project/maizegdb/sagnik/3_fungal_genomes/gene_annotation/${FUNGAL_SPECIES}_codan/longest_orf_with_cds.gtf \
-	--blast_db /project/maizegdb/sagnik/3_fungal_genomes/swissprot/swissprot \
+	--blast_db_directory /project/maizegdb/sagnik/3_fungal_genomes/swissprot/swissprot \
+	--blast_db_database swissprot \
 	1> /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES}.output \
 	2> /project/maizegdb/sagnik/3_fungal_genomes/functional_annotation/${FUNGAL_SPECIES}.error
 fi
